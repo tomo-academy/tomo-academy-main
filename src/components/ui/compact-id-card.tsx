@@ -296,117 +296,126 @@ END:VCARD`;
                 </div>
               </div>
 
-              {/* Bottom - Compact QR and NFC */}
-              <div className="flex items-center justify-between gap-3 mt-2">
+              {/* Bottom - QR Code Only */}
+              <div className="flex items-center justify-center mt-2">
                 {/* QR Code */}
                 <div className="flex flex-col items-center gap-1">
-                  <div className="p-1 bg-white dark:bg-slate-800 rounded-md shadow-sm border border-pink-200/60 dark:border-pink-700/60">
-                    <QRCode value={profileUrl} size={36} />
+                  <div className="p-1.5 bg-white dark:bg-slate-800 rounded-lg shadow-md border-2 border-pink-300/60 dark:border-pink-700/60 hover:border-pink-400 dark:hover:border-pink-600 transition-all">
+                    <QRCode value={profileUrl} size={40} />
                   </div>
-                  <span className="text-[8px] text-pink-600 dark:text-pink-400 font-semibold">Scan</span>
-                </div>
-
-                {/* NFC Icon - Professional Design */}
-                <div className="flex flex-col items-center gap-1">
-                  <div className="relative w-10 h-10 rounded-lg bg-gradient-to-br from-pink-500 to-purple-600 flex items-center justify-center shadow-md hover:shadow-lg hover:scale-105 transition-all cursor-pointer group/nfc">
-                    <div className="absolute inset-0 bg-white/10 rounded-lg" />
-                    <svg className="w-5 h-5 text-white relative z-10" viewBox="0 0 24 24" fill="currentColor">
-                      <path d="M20 2H4c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM4 20V4h16v16H4zm4.5-6.5v-3c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5v3c0 .83-.67 1.5-1.5 1.5s-1.5-.67-1.5-1.5zm6 3v-7c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5v7c0 .83-.67 1.5-1.5 1.5s-1.5-.67-1.5-1.5z"/>
-                    </svg>
-                    <div className="absolute inset-0 rounded-lg bg-pink-400/20 opacity-0 group-hover/nfc:opacity-100 animate-pulse transition-opacity" />
-                  </div>
-                  <span className="text-[8px] text-purple-600 dark:text-purple-400 font-semibold">Tap</span>
+                  <span className="text-[9px] text-pink-600 dark:text-pink-400 font-bold">Scan Profile</span>
                 </div>
               </div>
             </div>
           </div>
         </Card>
 
-        {/* BACK SIDE - Stylish Pink Layout */}
+        {/* BACK SIDE - Advanced Attractive Design */}
         <Card className={cn(
           "absolute inset-0 backface-hidden rotate-y-180 overflow-hidden",
-          "bg-gradient-to-br from-pink-50 via-purple-50/40 to-white dark:from-slate-900 dark:via-pink-950/10 dark:to-slate-900",
-          "border-2 border-pink-200/50 dark:border-pink-800/50 shadow-xl"
+          "bg-gradient-to-br from-pink-500 via-purple-500 to-pink-600 dark:from-pink-900 dark:via-purple-900 dark:to-pink-950",
+          "border-2 border-white/20 shadow-2xl"
         )}>
-          {/* Stylish gradient overlay with decorative corners */}
-          <div className="absolute inset-0 bg-gradient-to-br from-pink-100/20 via-transparent to-purple-100/20 dark:from-pink-950/10 dark:via-transparent dark:to-purple-950/10" />
-          <div className="absolute top-0 right-0 w-28 h-28 bg-gradient-to-bl from-pink-400/10 to-transparent rounded-bl-3xl" />
-          <div className="absolute bottom-0 left-0 w-28 h-28 bg-gradient-to-tr from-purple-400/10 to-transparent rounded-tr-3xl" />
+          {/* Animated Background Pattern */}
+          <div className="absolute inset-0 opacity-10">
+            <div className="absolute top-0 left-0 w-full h-full">
+              <div className="absolute top-4 left-4 w-20 h-20 bg-white/30 rounded-full blur-2xl animate-pulse" />
+              <div className="absolute bottom-4 right-4 w-24 h-24 bg-white/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 bg-white/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '0.5s' }} />
+            </div>
+          </div>
 
-          {/* Main Content - Stylish Organized Layout */}
-          <div className="relative flex flex-col h-full p-3 justify-between">
-            {/* Top Section - Stylish Instruction */}
-            <div className="text-center">
-              <div className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-gradient-to-r from-pink-500/10 to-purple-500/10 backdrop-blur-sm rounded-full border border-pink-300/60 dark:border-pink-700/60 shadow-md">
-                <Eye className="w-3.5 h-3.5 text-pink-600 dark:text-pink-400" />
-                <p className="font-bold text-[10px] bg-gradient-to-r from-pink-600 to-purple-600 bg-clip-text text-transparent">Tap or Scan to View Profile</p>
+          {/* Decorative Corner Elements */}
+          <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-bl from-white/10 to-transparent" />
+          <div className="absolute bottom-0 left-0 w-24 h-24 bg-gradient-to-tr from-white/10 to-transparent" />
+
+          {/* Main Content */}
+          <div className="relative flex flex-col h-full p-4 justify-between">
+            {/* Top - Logo & Brand */}
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <div className="w-10 h-10 bg-white/20 backdrop-blur-md rounded-xl flex items-center justify-center border border-white/30 shadow-lg">
+                  <img 
+                    src="/cropped_circle_image (1).png" 
+                    alt="Logo" 
+                    className="w-8 h-8 object-contain"
+                    onError={(e) => {
+                      const target = e.target as HTMLImageElement;
+                      target.src = '/logo.png';
+                    }}
+                  />
+                </div>
+                <div>
+                  <p className="text-white font-black text-sm leading-tight">TOMO ACADEMY</p>
+                  <p className="text-white/80 text-[8px] font-semibold">EDUCATION ELEVATED</p>
+                </div>
+              </div>
+              <div className="text-right">
+                <p className="text-white/90 text-[10px] font-bold">Member Card</p>
+                <p className="text-white/70 text-[8px]">2025</p>
               </div>
             </div>
 
-            {/* Center Section - Professional NFC Icon */}
-            <div className="flex flex-col items-center justify-center flex-1 py-2">
-              <div className="relative group/nfc-back">
-                {/* Subtle Animated Rings */}
+            {/* Center - QR Code with Scan Instruction */}
+            <div className="flex flex-col items-center justify-center flex-1 py-3">
+              <div className="relative">
+                {/* Animated Glow Rings */}
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="w-20 h-20 rounded-full border-2 border-pink-400/30 animate-ping" style={{ animationDuration: '2.5s' }} />
+                  <div className="w-28 h-28 rounded-2xl border-2 border-white/20 animate-ping" style={{ animationDuration: '3s' }} />
                 </div>
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="w-16 h-16 rounded-full border-2 border-purple-400/30 animate-pulse" />
+                  <div className="w-24 h-24 rounded-xl border-2 border-white/30 animate-pulse" />
                 </div>
                 
-                {/* Main NFC Icon - Professional Square Design */}
-                <div className="relative w-16 h-16 rounded-2xl bg-gradient-to-br from-pink-500 via-pink-600 to-purple-600 flex items-center justify-center shadow-2xl hover:shadow-pink-500/50 transition-all hover:scale-105 cursor-pointer">
-                  <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-white/10 to-transparent" />
-                  <div className="absolute inset-0 rounded-2xl border border-white/20" />
-                  {/* Professional NFC Icon */}
-                  <svg className="w-9 h-9 text-white relative z-10" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M20 2H4c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM4 20V4h16v16H4zm4.5-6.5v-3c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5v3c0 .83-.67 1.5-1.5 1.5s-1.5-.67-1.5-1.5zm6 3v-7c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5v7c0 .83-.67 1.5-1.5 1.5s-1.5-.67-1.5-1.5z"/>
-                  </svg>
+                {/* QR Code Container */}
+                <div className="relative p-3 bg-white rounded-2xl shadow-2xl">
+                  <QRCode value={profileUrl} size={60} />
                 </div>
               </div>
-              <div className="flex items-center gap-1 mt-2.5">
-                <div className="w-1 h-1 rounded-full bg-pink-500 animate-pulse" />
-                <p className="text-[10px] text-slate-700 dark:text-slate-300 font-bold">Tap your device here</p>
-                <div className="w-1 h-1 rounded-full bg-purple-500 animate-pulse" style={{ animationDelay: '0.5s' }} />
+              
+              {/* Scan Instruction */}
+              <div className="mt-4 flex items-center gap-2 px-4 py-2 bg-white/20 backdrop-blur-md rounded-full border border-white/30 shadow-lg">
+                <div className="w-2 h-2 rounded-full bg-white animate-pulse" />
+                <p className="text-white text-[11px] font-bold">SCAN TO VIEW PROFILE</p>
+                <div className="w-2 h-2 rounded-full bg-white animate-pulse" style={{ animationDelay: '0.5s' }} />
               </div>
             </div>
 
-            {/* Bottom Section - Stylish Contact & Social */}
-            <div className="space-y-2">
-              {/* Website & Email with Gradients */}
-              <div className="flex flex-col gap-1">
-                <div className="flex items-center justify-center gap-1.5 px-2.5 py-1 bg-gradient-to-r from-pink-50 to-purple-50 dark:from-pink-950/30 dark:to-purple-950/30 rounded-lg border border-pink-300/50 dark:border-pink-700/50 hover:border-pink-400 dark:hover:border-pink-600 transition-all">
-                  <Globe className="w-3 h-3 text-pink-600 dark:text-pink-400 flex-shrink-0" />
-                  <span className="font-bold text-[10px] text-pink-900 dark:text-pink-200 truncate">www.tomoacademy.com</span>
+            {/* Bottom - Contact Info & Social Links */}
+            <div className="space-y-2.5">
+              {/* Contact Grid */}
+              <div className="grid grid-cols-2 gap-2">
+                <div className="flex flex-col items-center gap-1 p-2 bg-white/10 backdrop-blur-md rounded-xl border border-white/20 hover:bg-white/20 transition-all">
+                  <Globe className="w-4 h-4 text-white" />
+                  <span className="text-white text-[9px] font-bold text-center leading-tight">www.tomoacademy.com</span>
                 </div>
-                <div className="flex items-center justify-center gap-1.5 px-2.5 py-1 bg-gradient-to-r from-purple-50 to-pink-50 dark:from-purple-950/30 dark:to-pink-950/30 rounded-lg border border-purple-300/50 dark:border-purple-700/50 hover:border-purple-400 dark:hover:border-purple-600 transition-all">
-                  <Mail className="w-3 h-3 text-purple-600 dark:text-purple-400 flex-shrink-0" />
-                  <span className="font-bold text-[10px] text-purple-900 dark:text-purple-200 truncate">support@tomoacademy.com</span>
+                <div className="flex flex-col items-center gap-1 p-2 bg-white/10 backdrop-blur-md rounded-xl border border-white/20 hover:bg-white/20 transition-all">
+                  <Mail className="w-4 h-4 text-white" />
+                  <span className="text-white text-[9px] font-bold text-center leading-tight">support@tomoacademy.com</span>
                 </div>
               </div>
 
-              {/* Social Icons with Stylish Buttons */}
-              <div className="flex justify-center items-center gap-2.5">
+              {/* Social Media Bar */}
+              <div className="flex items-center justify-center gap-3 p-2 bg-white/10 backdrop-blur-md rounded-xl border border-white/20">
+                <span className="text-white text-[9px] font-bold">Follow Us:</span>
                 <a href="https://youtube.com/@tomoacademy" target="_blank" rel="noopener noreferrer" 
                    onClick={(e) => e.stopPropagation()}
-                   className="w-8 h-8 rounded-xl bg-gradient-to-br from-red-500/10 to-red-600/10 flex items-center justify-center hover:from-red-500/20 hover:to-red-600/20 transition-all border-2 border-red-300/50 dark:border-red-700/50 hover:border-red-400 hover:scale-110 shadow-md hover:shadow-lg hover:shadow-red-500/30">
-                  <svg className="w-4 h-4 text-red-600 dark:text-red-500" viewBox="0 0 24 24" fill="currentColor">
+                   className="w-7 h-7 rounded-lg bg-white/20 flex items-center justify-center hover:bg-white/30 transition-all hover:scale-110 border border-white/30">
+                  <svg className="w-4 h-4 text-white" viewBox="0 0 24 24" fill="currentColor">
                     <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
                   </svg>
                 </a>
                 <a href="https://instagram.com/tomoacademy" target="_blank" rel="noopener noreferrer"
                    onClick={(e) => e.stopPropagation()}
-                   className="w-8 h-8 rounded-xl bg-gradient-to-br from-pink-500/10 to-purple-600/10 flex items-center justify-center hover:from-pink-500/20 hover:to-purple-600/20 transition-all border-2 border-pink-300/50 dark:border-pink-700/50 hover:border-pink-400 hover:scale-110 shadow-md hover:shadow-lg hover:shadow-pink-500/30">
-                  <Instagram className="w-4 h-4 text-pink-600 dark:text-pink-500" />
+                   className="w-7 h-7 rounded-lg bg-white/20 flex items-center justify-center hover:bg-white/30 transition-all hover:scale-110 border border-white/30">
+                  <Instagram className="w-4 h-4 text-white" />
                 </a>
               </div>
 
-              {/* Disclaimer with Gradient */}
-              <div className="text-center pt-1.5 border-t-2 border-gradient-to-r from-pink-200 via-purple-200 to-pink-200 dark:from-pink-800 dark:via-purple-800 dark:to-pink-800">
-                <p className="text-[9px] leading-tight">
-                  <span className="font-bold bg-gradient-to-r from-pink-600 to-purple-600 bg-clip-text text-transparent">Official Member Identity Card</span><br />
-                  <span className="text-[8px] text-slate-600 dark:text-slate-400">Unauthorized use prohibited</span>
-                </p>
+              {/* Footer Note */}
+              <div className="text-center pt-1 border-t border-white/20">
+                <p className="text-white text-[9px] font-bold">Official Member Identity Card</p>
+                <p className="text-white/70 text-[8px] mt-0.5">Unauthorized use prohibited • Valid 2025</p>
               </div>
             </div>
           </div>
