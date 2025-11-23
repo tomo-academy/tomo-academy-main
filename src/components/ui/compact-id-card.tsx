@@ -234,12 +234,12 @@ END:VCARD`;
             </Badge>
           </div>
 
-          {/* Main Content - Compact Layout */}
-          <div className="relative h-[calc(260px-48px-44px)] flex items-center px-4 py-3 gap-3">
-            {/* Photo */}
+          {/* Main Content - Horizontal Layout (Photo Left, Info Right) */}
+          <div className="relative h-[calc(260px-48px)] flex items-center px-4 py-4 gap-4">
+            {/* Left Side - Photo */}
             <div className="flex-shrink-0">
               <div className="relative group/photo">
-                <div className="w-20 h-20 rounded-xl bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-800 dark:to-slate-700 flex items-center justify-center text-white font-bold text-xl border-2 border-white dark:border-slate-600 shadow-xl overflow-hidden relative ring-2 ring-primary/30 hover:ring-primary/50 transition-all">
+                <div className="w-32 h-32 rounded-2xl bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-800 dark:to-slate-700 flex items-center justify-center text-white font-bold text-3xl border-2 border-white dark:border-slate-600 shadow-xl overflow-hidden relative ring-2 ring-primary/30 hover:ring-primary/50 transition-all">
                   {renderAvatar()}
                   {isUploading && (
                     <div className="absolute inset-0 bg-black/50 flex items-center justify-center z-10">
@@ -254,9 +254,9 @@ END:VCARD`;
                       document.getElementById(`photo-${employee.id}`)?.click();
                     }}
                     disabled={isUploading}
-                    className="absolute -bottom-1 -right-1 w-6 h-6 bg-primary rounded-full flex items-center justify-center opacity-0 group-hover/photo:opacity-100 transition-all shadow-md hover:scale-110"
+                    className="absolute -bottom-1 -right-1 w-7 h-7 bg-primary rounded-full flex items-center justify-center opacity-0 group-hover/photo:opacity-100 transition-all shadow-md hover:scale-110"
                   >
-                    <Camera className="w-3 h-3 text-white" />
+                    <Camera className="w-4 h-4 text-white" />
                   </button>
                 )}
                 <input
@@ -267,185 +267,148 @@ END:VCARD`;
                   onChange={handlePhotoChange}
                   disabled={isUploading}
                 />
-                <div className={cn(
-                  "absolute -top-0.5 -right-0.5 w-4 h-4 rounded-full border-2 border-white shadow-sm",
-                  getAvailabilityColor()
-                )} />
               </div>
             </div>
 
-            {/* Info */}
-            <div className="flex-1 min-w-0 space-y-1.5">
-              <div>
-                <h2 className="font-bold text-base leading-tight truncate">{employee.name}</h2>
-                <p className="text-xs text-muted-foreground leading-tight truncate">{employee.role}</p>
-              </div>
-              
-              <div className="space-y-1">
-                <div className="flex items-center gap-1.5">
-                  <Shield className="w-3 h-3 text-primary flex-shrink-0" />
-                  <span className="text-[10px] font-mono font-semibold">{employee.employeeId}</span>
+            {/* Right Side - Info and Actions */}
+            <div className="flex-1 min-w-0 flex flex-col justify-between h-full py-2">
+              {/* Top - Member Info */}
+              <div className="space-y-2">
+                <div>
+                  <h2 className="font-black text-xl leading-tight">{employee.name}</h2>
+                  <p className="text-sm text-muted-foreground font-semibold mt-0.5">{employee.role}</p>
                 </div>
-                <div className="flex items-center gap-1.5">
-                  <Briefcase className="w-3 h-3 text-accent flex-shrink-0" />
-                  <span className="text-[10px] truncate">{employee.department}</span>
-                </div>
-                <div className="flex items-center gap-1.5">
-                  <MapPin className="w-3 h-3 text-green-500 flex-shrink-0" />
-                  <span className="text-[10px] truncate">{employee.location || 'Remote'}</span>
-                </div>
-                <div className="flex items-center gap-1.5">
-                  <Calendar className="w-3 h-3 text-orange-500 flex-shrink-0" />
-                  <span className="text-[10px]">
-                    {yearsSince > 0 ? `${yearsSince}yr${yearsSince > 1 ? 's' : ''}` : 'New'}
-                  </span>
+                
+                <div className="space-y-1.5">
+                  <div className="flex items-center gap-1.5">
+                    <Shield className="w-3.5 h-3.5 text-primary flex-shrink-0" />
+                    <span className="text-xs font-mono font-bold">{employee.employeeId}</span>
+                  </div>
+                  <div className="flex items-center gap-1.5">
+                    <MapPin className="w-3.5 h-3.5 text-green-500 flex-shrink-0" />
+                    <span className="text-xs truncate">{employee.location || 'Remote'}</span>
+                  </div>
                 </div>
               </div>
-            </div>
 
-            {/* QR Code */}
-            <div className="flex-shrink-0 flex flex-col items-center gap-1">
-              <div className="p-1.5 bg-white rounded-lg shadow-md border border-primary/10">
-                <QRCode value={profileUrl} size={60} />
-              </div>
-              <p className="text-[8px] text-muted-foreground text-center leading-tight">
-                Scan<br/>Profile
-              </p>
-            </div>
-          </div>
+              {/* Bottom - QR Code and NFC Tap */}
+              <div className="flex items-end justify-between gap-3 mt-2">
+                {/* QR Code */}
+                <div className="flex flex-col items-center gap-1">
+                  <div className="p-1.5 bg-white rounded-lg shadow-md border border-primary/10">
+                    <QRCode value={profileUrl} size={50} />
+                  </div>
+                  <p className="text-[9px] text-muted-foreground text-center leading-tight font-medium">
+                    Scan Me
+                  </p>
+                </div>
 
-          {/* Footer Stats - Compact */}
-          <div className="relative h-11 bg-gradient-to-r from-primary/5 via-accent/5 to-primary/5 border-t flex items-center justify-between px-4 py-2">
-            <div className="flex gap-3">
-              <div className="flex items-center gap-1">
-                <Video className="w-3.5 h-3.5 text-primary" />
-                <span className="text-xs font-bold">{employee.stats.videos}</span>
+                {/* NFC Tap Icon */}
+                <div className="flex flex-col items-center gap-1">
+                  <div className="w-14 h-14 rounded-full bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center relative overflow-hidden group/nfc">
+                    <div className="absolute inset-0 bg-gradient-to-br from-primary/30 to-accent/30 animate-pulse" />
+                    <div className="relative">
+                      <svg className="w-7 h-7 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                        <path d="M6 8.32a7.43 7.43 0 0 1 0 7.36" />
+                        <path d="M9.46 6.21a11.76 11.76 0 0 1 0 11.58" />
+                        <path d="M12.91 4.1a15.91 15.91 0 0 1 0 15.8" />
+                        <path d="M16.37 2a20.16 20.16 0 0 1 0 20" />
+                      </svg>
+                    </div>
+                  </div>
+                  <p className="text-[9px] text-muted-foreground text-center leading-tight font-medium">
+                    Tap Here
+                  </p>
+                </div>
               </div>
-              <div className="flex items-center gap-1">
-                <Briefcase className="w-3.5 h-3.5 text-accent" />
-                <span className="text-xs font-bold">{employee.stats.projects}</span>
-              </div>
-            </div>
-            <div className="flex items-center gap-0.5">
-              <Star className="w-3.5 h-3.5 text-yellow-500 fill-yellow-500" />
-              <span className="text-xs font-bold">{employee.stats.rating}</span>
             </div>
           </div>
         </Card>
 
-        {/* BACK SIDE - QR Focus - Fixed overlapping issues */}
+        {/* BACK SIDE - Clean Info Layout */}
         <Card className={cn(
           "absolute inset-0 backface-hidden rotate-y-180 overflow-hidden",
-          "bg-gradient-to-br from-accent/10 via-primary/5 to-accent/10",
-          "border-2 border-accent/30 shadow-xl"
+          "bg-gradient-to-br from-white via-slate-50 to-white dark:from-slate-900 dark:via-slate-800 dark:to-slate-900",
+          "border-2 border-primary/20 shadow-xl"
         )}>
-          {/* Header - Reduced height */}
-          <div className="relative h-12 bg-gradient-to-r from-pink-600 via-pink-500 to-pink-600 text-white flex items-center justify-center">
-            <div className="flex items-center gap-1.5">
-              <div className="w-7 h-7 bg-white rounded-full flex items-center justify-center overflow-hidden shadow-md p-1">
-                <img src="/logo.png" alt="TOMO Academy" className="w-full h-full object-contain" onError={(e) => {
-                  e.currentTarget.src = '/TOMO.jpg';
-                }} />
-              </div>
-              <div>
-                <p className="font-bold text-xs leading-none">TOMO ACADEMY</p>
-                <p className="text-[9px] opacity-90 leading-none mt-0.5">EDUCATION ELEVATED</p>
-              </div>
-            </div>
+          {/* Decorative Elements */}
+          <div className="absolute inset-0 opacity-5">
+            <div className="absolute top-0 right-0 w-32 h-32 bg-primary rounded-full blur-3xl" />
+            <div className="absolute bottom-0 left-0 w-32 h-32 bg-accent rounded-full blur-3xl" />
           </div>
 
-          {/* Main Content - Fixed spacing and layout */}
-          <div className="relative flex flex-col h-[calc(260px-48px-40px)] p-3 justify-between">
-            {/* Employee Info Section - Top */}
-            <div className="text-center space-y-0.5">
-              <h3 className="font-bold text-sm leading-tight truncate">{employee.name}</h3>
-              <p className="text-xs text-muted-foreground leading-tight truncate">{employee.role}</p>
-              <p className="text-[10px] font-mono text-primary">{employee.employeeId}</p>
-            </div>
-
-            {/* QR Code Section - Center */}
-            <div className="flex flex-col items-center space-y-2">
-              <div className="p-2 bg-white rounded-xl shadow-lg border-2 border-primary/20">
-                <QRCode value={profileUrl} size={75} />
-              </div>
-              <div className="text-center">
-                <p className="font-semibold text-xs flex items-center justify-center gap-1">
-                  <Sparkles className="w-3 h-3 text-primary" />
-                  Scan for Profile
-                </p>
-                <p className="text-[9px] text-muted-foreground">View complete details</p>
+          {/* Main Content */}
+          <div className="relative flex flex-col h-full p-6 justify-between">
+            {/* Top Section - Instruction */}
+            <div className="text-center space-y-1">
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-primary/10 rounded-full">
+                <Eye className="w-4 h-4 text-primary" />
+                <p className="font-bold text-sm text-primary">Tap or Scan to View Profile</p>
               </div>
             </div>
 
-            {/* Social Links Section - Bottom */}
-            <div className="flex justify-center">
-              {employee.social && Object.values(employee.social).some(v => v) && (
-                <div className="flex items-center gap-1.5">
-                  {employee.social.linkedin && (
-                    <a href={employee.social.linkedin} target="_blank" rel="noopener noreferrer" 
-                       onClick={(e) => e.stopPropagation()}
-                       className="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center hover:bg-primary/20 transition-colors">
-                      <Linkedin className="w-3 h-3 text-primary" />
-                    </a>
-                  )}
-                  {employee.social.twitter && (
-                    <a href={employee.social.twitter} target="_blank" rel="noopener noreferrer"
-                       onClick={(e) => e.stopPropagation()}
-                       className="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center hover:bg-primary/20 transition-colors">
-                      <Twitter className="w-3 h-3 text-primary" />
-                    </a>
-                  )}
-                  {employee.social.github && (
-                    <a href={employee.social.github} target="_blank" rel="noopener noreferrer"
-                       onClick={(e) => e.stopPropagation()}
-                       className="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center hover:bg-primary/20 transition-colors">
-                      <Github className="w-3 h-3 text-primary" />
-                    </a>
-                  )}
-                  {employee.social.instagram && (
-                    <a href={employee.social.instagram} target="_blank" rel="noopener noreferrer"
-                       onClick={(e) => e.stopPropagation()}
-                       className="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center hover:bg-primary/20 transition-colors">
-                      <Instagram className="w-3 h-3 text-primary" />
-                    </a>
-                  )}
+            {/* Center Section - NFC Tap Icon (Large) */}
+            <div className="flex flex-col items-center justify-center flex-1">
+              <div className="relative">
+                {/* Pulsing background circles */}
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="w-32 h-32 rounded-full bg-primary/10 animate-ping" style={{ animationDuration: '2s' }} />
                 </div>
-              )}
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="w-28 h-28 rounded-full bg-primary/20 animate-pulse" />
+                </div>
+                
+                {/* Main NFC Icon */}
+                <div className="relative w-24 h-24 rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center shadow-xl">
+                  <svg className="w-14 h-14 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M6 8.32a7.43 7.43 0 0 1 0 7.36" />
+                    <path d="M9.46 6.21a11.76 11.76 0 0 1 0 11.58" />
+                    <path d="M12.91 4.1a15.91 15.91 0 0 1 0 15.8" />
+                    <path d="M16.37 2a20.16 20.16 0 0 1 0 20" />
+                  </svg>
+                </div>
+              </div>
+              <p className="text-xs text-muted-foreground mt-3 font-medium">Tap your device here</p>
             </div>
-          </div>
 
-          {/* Footer Actions - Fixed height and compact */}
-          <div className="relative h-10 bg-gradient-to-r from-primary/10 to-accent/10 border-t flex items-center justify-center gap-1 px-2">
-            <Button 
-              variant="ghost" 
-              size="sm"
-              className="h-6 px-1.5 text-[9px] flex-1 max-w-[60px] gap-0.5"
-              onClick={downloadVCard}
-            >
-              <Download className="w-2.5 h-2.5" />
-              Save
-            </Button>
-            <Button 
-              variant="ghost" 
-              size="sm"
-              className="h-6 px-1.5 text-[9px] flex-1 max-w-[60px] gap-0.5"
-              onClick={shareProfile}
-            >
-              <Share2 className="w-2.5 h-2.5" />
-              Share
-            </Button>
-            <Button 
-              variant="default" 
-              size="sm"
-              className="h-6 px-1.5 text-[9px] bg-primary flex-1 max-w-[60px] gap-0.5"
-              onClick={(e) => {
-                e.stopPropagation();
-                window.open(`/profile/${employee.id}`, '_blank');
-              }}
-            >
-              <Eye className="w-2.5 h-2.5" />
-              View
-            </Button>
+            {/* Bottom Section - Contact & Social */}
+            <div className="space-y-3">
+              {/* Website & Email */}
+              <div className="flex flex-col gap-1.5 text-center">
+                <div className="flex items-center justify-center gap-1.5 text-xs">
+                  <Globe className="w-3.5 h-3.5 text-primary" />
+                  <span className="font-medium">www.tomoacademy.com</span>
+                </div>
+                <div className="flex items-center justify-center gap-1.5 text-xs">
+                  <Mail className="w-3.5 h-3.5 text-accent" />
+                  <span className="font-medium">support@tomoacademy.com</span>
+                </div>
+              </div>
+
+              {/* Social Icons */}
+              <div className="flex justify-center items-center gap-2">
+                <a href="https://youtube.com/@tomoacademy" target="_blank" rel="noopener noreferrer" 
+                   onClick={(e) => e.stopPropagation()}
+                   className="w-8 h-8 rounded-full bg-red-500/10 flex items-center justify-center hover:bg-red-500/20 transition-colors">
+                  <svg className="w-4 h-4 text-red-600" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                  </svg>
+                </a>
+                <a href="https://instagram.com/tomoacademy" target="_blank" rel="noopener noreferrer"
+                   onClick={(e) => e.stopPropagation()}
+                   className="w-8 h-8 rounded-full bg-pink-500/10 flex items-center justify-center hover:bg-pink-500/20 transition-colors">
+                  <Instagram className="w-4 h-4 text-pink-600" />
+                </a>
+              </div>
+
+              {/* Disclaimer */}
+              <div className="text-center pt-2 border-t border-border/50">
+                <p className="text-[9px] text-muted-foreground leading-relaxed">
+                  <span className="font-semibold">Official member identity card.</span><br />
+                  Unauthorized use prohibited.
+                </p>
+              </div>
+            </div>
           </div>
         </Card>
       </div>
