@@ -338,15 +338,15 @@ END:VCARD`;
           <div className="absolute bottom-0 left-0 w-20 h-20 border-b-2 border-l-2 border-white/20 rounded-bl-2xl" />
 
           {/* Main Content */}
-          <div className="relative flex flex-col h-full p-3 justify-between">
+          <div className="relative flex flex-col h-full p-2 justify-between">
             {/* Top - Elegant Header */}
             <div className="flex items-center justify-between">
-              <div className="flex items-center gap-1.5">
-                <div className="w-8 h-8 bg-white/15 backdrop-blur-xl rounded-lg flex items-center justify-center border border-white/25 shadow-xl">
+              <div className="flex items-center gap-1">
+                <div className="w-6 h-6 bg-white/15 backdrop-blur-xl rounded-md flex items-center justify-center border border-white/25 shadow-xl">
                   <img 
                     src="/cropped_circle_image (1).png" 
                     alt="Logo" 
-                    className="w-6 h-6 object-contain"
+                    className="w-5 h-5 object-contain"
                     onError={(e) => {
                       const target = e.target as HTMLImageElement;
                       target.src = '/logo.png';
@@ -354,78 +354,76 @@ END:VCARD`;
                   />
                 </div>
                 <div>
-                  <p className="text-white font-black text-[11px] leading-none tracking-wider">TOMO ACADEMY</p>
-                  <p className="text-white/90 text-[7px] font-semibold tracking-wide mt-0.5">EDUCATION ELEVATED</p>
+                  <p className="text-white font-black text-[9px] leading-none tracking-wider">TOMO ACADEMY</p>
+                  <p className="text-white/90 text-[6px] font-semibold tracking-wide mt-0.5">EDUCATION ELEVATED</p>
                 </div>
               </div>
-              <div className="px-2 py-1 bg-white/15 backdrop-blur-xl rounded-lg border border-white/25">
-                <p className="text-white text-[9px] font-bold">MEMBER</p>
-                <p className="text-white/80 text-[7px] text-center">2025</p>
+              <div className="px-1.5 py-0.5 bg-white/15 backdrop-blur-xl rounded-md border border-white/25">
+                <p className="text-white text-[8px] font-bold leading-none">MEMBER</p>
+                <p className="text-white/80 text-[6px] text-center mt-0.5">2025</p>
               </div>
             </div>
 
             {/* Center - QR Code Section */}
-            <div className="flex flex-col items-center justify-center flex-1 py-2">
+            <div className="flex flex-col items-center justify-center flex-1 py-1">
               <div className="relative">
                 {/* Elegant animated rings */}
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="w-24 h-24 rounded-xl border border-white/15 animate-ping" style={{ animationDuration: '3s' }} />
+                  <div className="w-20 h-20 rounded-xl border border-white/15 animate-ping" style={{ animationDuration: '3s' }} />
                 </div>
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="w-20 h-20 rounded-lg border border-white/25 animate-pulse" style={{ animationDuration: '2s' }} />
+                  <div className="w-16 h-16 rounded-lg border border-white/25 animate-pulse" style={{ animationDuration: '2s' }} />
                 </div>
                 
                 {/* QR Code with elegant frame */}
-                <div className="relative p-2.5 bg-white rounded-xl shadow-2xl border-4 border-white/90">
-                  <div className="p-0.5 bg-gradient-to-br from-pink-100 to-purple-100 rounded-lg">
-                    <QRCode value={profileUrl} size={50} />
-                  </div>
+                <div className="relative p-2 bg-white rounded-lg shadow-2xl border-2 border-white/90">
+                  <QRCode value={profileUrl} size={44} />
                 </div>
               </div>
               
               {/* Scan instruction with elegant styling */}
-              <div className="mt-3 flex items-center gap-1.5 px-3 py-1.5 bg-white/15 backdrop-blur-xl rounded-full border border-white/25 shadow-xl">
-                <div className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
-                <p className="text-white text-[9px] font-bold tracking-wider">SCAN TO VIEW PROFILE</p>
-                <div className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" style={{ animationDelay: '0.5s' }} />
+              <div className="mt-2 flex items-center gap-1 px-2.5 py-1 bg-white/15 backdrop-blur-xl rounded-full border border-white/25 shadow-xl">
+                <div className="w-1 h-1 rounded-full bg-white animate-pulse" />
+                <p className="text-white text-[8px] font-bold tracking-wider">SCAN TO VIEW PROFILE</p>
+                <div className="w-1 h-1 rounded-full bg-white animate-pulse" style={{ animationDelay: '0.5s' }} />
               </div>
             </div>
 
             {/* Bottom - Professional Contact Section */}
-            <div className="space-y-1.5">
+            <div className="space-y-1">
               {/* Contact Information */}
-              <div className="grid grid-cols-2 gap-1.5">
-                <div className="flex flex-col items-center gap-0.5 p-1.5 bg-white/10 backdrop-blur-xl rounded-lg border border-white/20 hover:bg-white/15 transition-all">
-                  <Globe className="w-3 h-3 text-white" />
-                  <span className="text-white text-[8px] font-bold text-center leading-tight">tomoacademy.com</span>
+              <div className="grid grid-cols-2 gap-1">
+                <div className="flex flex-col items-center gap-0.5 p-1 bg-white/10 backdrop-blur-xl rounded-md border border-white/20 hover:bg-white/15 transition-all">
+                  <Globe className="w-2.5 h-2.5 text-white" />
+                  <span className="text-white text-[7px] font-bold text-center leading-tight">tomoacademy.com</span>
                 </div>
-                <div className="flex flex-col items-center gap-0.5 p-1.5 bg-white/10 backdrop-blur-xl rounded-lg border border-white/20 hover:bg-white/15 transition-all">
-                  <Mail className="w-3 h-3 text-white" />
-                  <span className="text-white text-[8px] font-bold text-center leading-tight">support@tomo</span>
+                <div className="flex flex-col items-center gap-0.5 p-1 bg-white/10 backdrop-blur-xl rounded-md border border-white/20 hover:bg-white/15 transition-all">
+                  <Mail className="w-2.5 h-2.5 text-white" />
+                  <span className="text-white text-[7px] font-bold text-center leading-tight">support@tomo</span>
                 </div>
               </div>
 
               {/* Social Media Links */}
-              <div className="flex items-center justify-center gap-2 p-1.5 bg-white/10 backdrop-blur-xl rounded-lg border border-white/20">
-                <span className="text-white text-[8px] font-bold tracking-wide">FOLLOW:</span>
+              <div className="flex items-center justify-center gap-1.5 p-1 bg-white/10 backdrop-blur-xl rounded-md border border-white/20">
+                <span className="text-white text-[7px] font-bold tracking-wide">FOLLOW:</span>
                 <a href="https://youtube.com/@tomoacademy" target="_blank" rel="noopener noreferrer" 
                    onClick={(e) => e.stopPropagation()}
-                   className="w-6 h-6 rounded-md bg-white/15 flex items-center justify-center hover:bg-white/25 transition-all hover:scale-110 border border-white/25">
-                  <svg className="w-3.5 h-3.5 text-white" viewBox="0 0 24 24" fill="currentColor">
+                   className="w-5 h-5 rounded-md bg-white/15 flex items-center justify-center hover:bg-white/25 transition-all hover:scale-110 border border-white/25">
+                  <svg className="w-3 h-3 text-white" viewBox="0 0 24 24" fill="currentColor">
                     <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
                   </svg>
                 </a>
                 <a href="https://instagram.com/tomoacademy" target="_blank" rel="noopener noreferrer"
                    onClick={(e) => e.stopPropagation()}
-                   className="w-6 h-6 rounded-md bg-white/15 flex items-center justify-center hover:bg-white/25 transition-all hover:scale-110 border border-white/25">
-                  <Instagram className="w-3.5 h-3.5 text-white" />
+                   className="w-5 h-5 rounded-md bg-white/15 flex items-center justify-center hover:bg-white/25 transition-all hover:scale-110 border border-white/25">
+                  <Instagram className="w-3 h-3 text-white" />
                 </a>
               </div>
 
               {/* Elegant Footer */}
-              <div className="text-center pt-1 border-t border-white/20">
-                <p className="text-white text-[8px] font-bold tracking-wide">OFFICIAL MEMBER CARD</p>
-                <p className="text-white/80 text-[7px] mt-0.5">Valid 2025 • Unauthorized use prohibited</p>
+              <div className="text-center pt-0.5 border-t border-white/20">
+                <p className="text-white text-[7px] font-bold tracking-wide leading-tight">OFFICIAL MEMBER CARD</p>
+                <p className="text-white/80 text-[6px] leading-tight">Valid 2025 • Unauthorized use prohibited</p>
               </div>
             </div>
           </div>
