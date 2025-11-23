@@ -200,11 +200,14 @@ END:VCARD`;
         onClick={() => setIsFlipped(!isFlipped)}
       >
         {/* FRONT SIDE - Stylish Pink Design */}
-        <Card className={cn(
-          "absolute inset-0 backface-hidden overflow-hidden",
-          "bg-gradient-to-br from-white via-pink-50/50 to-purple-50/40 dark:from-slate-900 dark:via-pink-950/20 dark:to-slate-900",
-          "border-2 border-pink-200/50 dark:border-pink-800/50 shadow-xl hover:shadow-2xl hover:shadow-pink-500/20 transition-all duration-500"
-        )}>
+        <Card 
+          data-card-id={employee.id}
+          data-side="front"
+          className={cn(
+            "absolute inset-0 backface-hidden overflow-hidden",
+            "bg-gradient-to-br from-white via-pink-50/50 to-purple-50/40 dark:from-slate-900 dark:via-pink-950/20 dark:to-slate-900",
+            "border-2 border-pink-200/50 dark:border-pink-800/50 shadow-xl hover:shadow-2xl hover:shadow-pink-500/20 transition-all duration-500"
+          )}>
           {/* Stylish gradient overlay with decorative corners */}
           <div className="absolute inset-0 bg-gradient-to-br from-pink-100/20 via-transparent to-purple-100/20 dark:from-pink-950/10 dark:via-transparent dark:to-purple-950/10" />
           <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-bl from-pink-400/10 to-transparent rounded-bl-3xl" />
@@ -311,11 +314,14 @@ END:VCARD`;
         </Card>
 
         {/* BACK SIDE - Premium White with Pink Accents */}
-        <Card className={cn(
-          "absolute inset-0 backface-hidden rotate-y-180 overflow-hidden",
-          "bg-gradient-to-br from-white via-pink-50/50 to-purple-50/40 dark:from-slate-900 dark:via-pink-950/20 dark:to-slate-900",
-          "border-2 border-pink-200/50 dark:border-pink-800/50 shadow-xl"
-        )}>
+        <Card 
+          data-card-id={employee.id}
+          data-side="back"
+          className={cn(
+            "absolute inset-0 backface-hidden rotate-y-180 overflow-hidden",
+            "bg-gradient-to-br from-white via-pink-50/50 to-purple-50/40 dark:from-slate-900 dark:via-pink-950/20 dark:to-slate-900",
+            "border-2 border-pink-200/50 dark:border-pink-800/50 shadow-xl"
+          )}>
           {/* Premium gradient overlay with decorative corners */}
           <div className="absolute inset-0 bg-gradient-to-br from-pink-100/20 via-transparent to-purple-100/20 dark:from-pink-950/10 dark:via-transparent dark:to-purple-950/10" />
           <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-bl from-pink-400/10 to-transparent rounded-bl-3xl" />
