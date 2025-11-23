@@ -14,6 +14,8 @@ import {
   Linkedin, Twitter, Github, Instagram, ExternalLink, Edit
 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { exportSingleCardAsPDF, type Employee } from "@/utils/exportIdCards";
+import { toast } from "sonner";
 
 interface CompactIDCardProps {
   employee: {
@@ -51,9 +53,27 @@ export function CompactIDCard({ employee, onPhotoUpdate }: CompactIDCardProps) {
   const [isFlipped, setIsFlipped] = useState(false);
   const [isUploading, setIsUploading] = useState(false);
   const [imageError, setImageError] = useState(false);
-  const { toast } = useToast();
+  const [isExporting, setIsExporting] = useState(false);
+  const { toast: toastHook } = useToast();
 
   const profileUrl = generateProfileUrl(employee.id);
+
+  const handleExportCard = async (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setIsExporting(true);
+    toast.loading(`Exporting ID card for ${employee.name}...`, { id: `export-${employee.id}` });
+    
+    try {
+      const fileName = `${employee.name.replace(/\s+/g, '_')}_${employee.employeeId}`;
+      await exportSingleCardAsPDF(employee as Employee, fileName);
+      toast.success(`ID card exported successfully!`, { id: `export-${employee.id}` });
+    } catch (error) {
+      toast.error(`Failed to export ID card`, { id: `export-${employee.id}` });
+      console.error(error);
+    } finally {
+      setIsExporting(false);
+    }
+  };
 
   // Function to get the correct image path using GitHub photo service
   const getImagePath = (avatar?: string, avatar_url?: string) => {
@@ -98,7 +118,7 @@ export function CompactIDCard({ employee, onPhotoUpdate }: CompactIDCardProps) {
       // Validate the image
       const validation = githubPhotoService.validateImage(file);
       if (!validation.valid) {
-        toast({
+        toastHook({
           title: "❌ Invalid Image",
           description: validation.error,
           variant: "destructive",
@@ -109,7 +129,7 @@ export function CompactIDCard({ employee, onPhotoUpdate }: CompactIDCardProps) {
 
       if (onPhotoUpdate) {
         await onPhotoUpdate(file);
-        toast({
+        toastHook({
           title: "✅ Photo Updated",
           description: "Profile photo updated successfully!",
           duration: 2000,
@@ -117,7 +137,7 @@ export function CompactIDCard({ employee, onPhotoUpdate }: CompactIDCardProps) {
       }
     } catch (error) {
       console.error('Photo upload error:', error);
-      toast({
+      toastHook({
         title: "❌ Upload Failed",
         description: "Failed to update photo. Please try again.",
         variant: "destructive",
@@ -150,7 +170,7 @@ END:VCARD`;
     a.click();
     URL.revokeObjectURL(url);
 
-    toast({
+    toastHook({
       title: "📥 Contact Downloaded",
       description: "vCard saved successfully!",
       duration: 2000,
@@ -171,7 +191,7 @@ END:VCARD`;
       }
     } else {
       navigator.clipboard.writeText(profileUrl);
-      toast({
+      toastHook({
         title: "🔗 Link Copied",
         description: "Profile link copied to clipboard!",
         duration: 2000,
@@ -191,7 +211,18 @@ END:VCARD`;
   const yearsSince = new Date().getFullYear() - new Date(employee.joinDate).getFullYear();
 
   return (
-    <div className="w-full max-w-[320px] mx-auto perspective-1000 group/card">
+    <div className="w-full max-w-[320px] mx-auto perspective-1000 group/card relative">
+      {/* Export Button - Floating */}
+      <Button
+        variant="secondary"
+        size="sm"
+        onClick={handleExportCard}
+        disabled={isExporting}
+        className="absolute -top-3 -right-3 z-50 shadow-lg bg-white hover:bg-pink-50 border-2 border-pink-300 hover:border-pink-500 transition-all duration-300 scale-0 group-hover/card:scale-100"
+      >
+        <Download className="h-4 w-4 text-pink-600" />
+      </Button>
+      
       <div 
         className={cn(
           "relative w-full h-[200px] transition-all duration-700 transform-style-preserve-3d cursor-pointer",
